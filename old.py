@@ -147,7 +147,7 @@ parser.add_argument("--video", help="Clips & videos", action="store_true")
 
 args = parser.parse_args()
 
-if args.service or args.repository or args.store or args.weapons or args.adult or args.drugs or args.torrents or args.world or args.political or args.commercial or args.hosting or args.mail or args.forums or args.chat or args.blogs or args.books or args.hack or args.image or args.audio or args.vid:
+if args.service or args.repository or args.store or args.weapons or args.adult or args.drugs or args.torrents or args.world or args.political or args.commercial or args.hosting or args.mail or args.forums or args.chat or args.blogs or args.books or args.hack or args.image or args.audio or args.video:
 	InterfaceS()
 	if args.service:
 		search("service")
@@ -190,10 +190,10 @@ if args.service or args.repository or args.store or args.weapons or args.adult o
 	elif args.video:
 		search("video")
 
-elif legals:
+elif args.legals:
 	InterfaceS()
 	print("SECTION NOT DONE YET FOLKS")
-elif submit:
+elif args.submit:
 	banner1()
 	print("To submit a link you need to send an E-Mail to: anivsante2@gmail.com.")
 	print("The name of the E-Mail has to be 'OLD link' or else it will be ignored;")
