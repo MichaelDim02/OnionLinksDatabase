@@ -168,7 +168,7 @@ if args.service or args.repository or args.store or args.weapons or args.adult o
 	elif args.political:
 		search("political")
 	elif args.commercial:
-		search("comcommercial")
+		search("commercial")
 	elif args.hosting:                              # Tried to avoid such a mess
 		search("hosting")                  # Unfrotunately it will stay with us for a while
 	elif args.mail:                                 # At least in python if / elif / else takes swtich/case 's role as well
