@@ -1,8 +1,12 @@
 # OLD
-# Onion Link Database
-# Version 0.1
-#
-# PRE-RELEASE
+# Onion Links Databse 
+# Current Version: v0.1
+# Michael C. Dimopoulos
+# Thessaloniki, Greece 2017
+# GNU General Public License v3.0
+# Free Software Foundation
+
+############## IMPORTS: ##############
 
 import colorama
 from colorama import Fore, Back, Style
@@ -10,6 +14,10 @@ import random
 import argparse
 import sqlite3
 import time
+
+#######################################
+
+############### CODE: #################
 
 def search(tag):
 	start = time.time()
@@ -19,32 +27,37 @@ def search(tag):
 	print(Style.BRIGHT + Fore.RED + "[!] If you happen to come across a site that contains child pornography, please notify us to remove it from OLD." + Style.RESET_ALL + "\n")
 	print(Style.BRIGHT + Fore.RED + "          Results:\n")
 	for row in cur.fetchall():
-		if row[5] != None:
+		if row[5] != None and row[5] != "":
 			print(Style.BRIGHT + Fore.RED + row[1])
 			print(Fore.BLUE + row[2])
 			print(Fore.WHITE + row[3] + ", " + row[4] + ", " + row[5])
-		if row[5] == None and row[4] != None:
+		if row[5] == None and row[5] != "" and row[4] != None:
 			print(Style.BRIGHT + Fore.RED + row[1])
 			print(Fore.BLUE + row[2])
 			print(Fore.WHITE + row[3] + ", " + row[4])
-		if row[5] == None and row[4] == None:
-			print(Style.BRIGHT + Fore.RED + row[1])
+		if row[5] == None and row[4] == None and row[5] != "" and row[4] != "":
+			print(Style.BRIGHT + Fore.RED + row[1])				
 			print(Fore.BLUE + row[2])
 			print(Fore.WHITE + row[3])
+
 		print("\n")
 	end = time.time()
 	ElapsedTime = end - start
 	print(Style.BRIGHT + Fore.RED + "[+] Results for " + tag)
 	print(Style.BRIGHT + Fore.RED + "[t] Time: " + str(ElapsedTime) + "s\n")
+
+#This Function Prints name of the program, version, developer, time & date
 def software():
-	print(Fore.WHITE + "OLD - Onion Link Databse v0.1" + Style.RESET_ALL)
+	print(Fore.WHITE + "OLD - Onion Links Database v0.1 by MCD Th, Gr 2017\n" + Style.RESET_ALL)
+
+############### BANNERS ###############
 def banner0():
-	print(Style.BRIGHT + Fore.BLUE + " MMMMM  MM'     MMMMM")
-	print(Style.BRIGHT + Fore.BLUE + "MMM MMM MM      MM''MM" + Fore.WHITE + "  Onion Link Database")
-	print(Style.BRIGHT + Fore.BLUE + "MMM MMM MM      MM  MMM" + Fore.WHITE + "  Version 0.1")
-	print(Style.BRIGHT + Fore.BLUE + "MMM MMM MM      MM  MMM" + Fore.WHITE + "  By MCD - avinsatne2@gmail.com")
-	print(Style.BRIGHT + Style.BRIGHT + Fore.BLUE + "MMM MMM MM.  .M MM..MM" + Fore.WHITE + "   TOR links and websites!")
-	print(Style.BRIGHT + Fore.BLUE + " MMMMM  MMMMMMM MMMMM" + Fore.WHITE + "   Report bugs & not working pages.\n" + Style.RESET_ALL)
+	print(Style.BRIGHT + Fore.BLUE +                ".MMMMM.  MMM'    \"MMMMMM.")
+	print(Style.BRIGHT + Fore.BLUE +                "MM' 'MM  MM'       MM 'MM." + Fore.WHITE + "  Onion Link Database")
+	print(Style.BRIGHT + Fore.BLUE +                "MM   MM  MM    .   MM  MMM" + Fore.WHITE + "  Version 0.1")
+	print(Style.BRIGHT + Fore.BLUE +                "MM   MM  MM    ;   MM  MMM" + Fore.WHITE + "  By MCD - avinsatne2@gmail.com")
+	print(Style.BRIGHT + Style.BRIGHT + Fore.BLUE + "MM. .MM  MM   .M   MM .MM'" + Fore.WHITE + "  Report bugs & expired links")
+	print(Style.BRIGHT + Fore.BLUE +                "'MMMMM'  MMMMMMM .MMMMMM'\n" + Style.RESET_ALL)
 def banner1():
 	line1 = "\n    .aMMMb  dMP     dMMMMb"
 	line2 = "   dMP'dMP dMP     dMP VMP"
@@ -55,43 +68,44 @@ def banner1():
 	print(Style.BRIGHT + Fore.RED + line2 + Fore.WHITE + "   Onion Links Database")
 	print(Style.BRIGHT + Fore.RED + line3 + Fore.WHITE + "   Version 0.1")
 	print(Style.BRIGHT + Fore.RED + line4 + Fore.WHITE + "   By MCD - anivsante2@gmail.com")
-	print(Style.BRIGHT + Fore.RED + line5 + Fore.WHITE + "   Report bugs & not working pages.\n" + Style.RESET_ALL)
+	print(Style.BRIGHT + Fore.RED + line5 + Fore.WHITE + "   Report bugs & expired links\n" + Style.RESET_ALL)
 def banner2():
 	print(Fore.BLUE + Style.NORMAL + " .d88b.  dY      d8888b.")
-	print(Fore.BLUE + Style.BRIGHT + ".8P  Y8. 88      88  '8D" + Fore.WHITE + Style.BRIGHT + "   Onion Links Database")
+	print(Fore.BLUE + Style.BRIGHT + ".8P  Y8. 88      88  '8D" + Fore.WHITE + Style.BRIGHT + "  Onion Links Database")
 	print(Fore.CYAN + "88    88 88      88   88" + Fore.WHITE + Style.BRIGHT + "  Version 0.1")
 	print(Fore.CYAN + "88    88 88      88   88" + Fore.WHITE + Style.BRIGHT + "  By MCD - anivsante2@gmail.com")
-	print(Fore.WHITE + Style.BRIGHT + "'8b  d8' 88      88. .8D" + Fore.WHITE + "  Report bugs & not working pages.")
+	print(Fore.WHITE + Style.BRIGHT + "'8b  d8' 88      88. .8D" + Fore.WHITE + " Report bugs & expired links")
 	print(Fore.WHITE + " 'Y88P'  Y88888P Y8888D' \n"+ Style.RESET_ALL)
 def banner3():
-	print(Fore.YELLOW + "\n      OOOOOOOOO     LLLLLLLLLLL             DDDDDDDDDDDDD")
-	print(Fore.YELLOW + "    OO" + Style.BRIGHT + ":::::::::" + Style.NORMAL + "OO   L" + Style.BRIGHT + ":::::::::" + Style.NORMAL + "L             D" + Style.BRIGHT + "::::::::::::" + Style.NORMAL + "DDD" + Style.RESET_ALL)
-	print(Fore.YELLOW + "  OO" + Style.BRIGHT + ":::::::::::::" + Style.NORMAL + "OO L" + Style.BRIGHT + ":::::::::" + Style.NORMAL + "L             D" + Style.BRIGHT + ":::::::::::::::" + Style.NORMAL + "DD" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OOO" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OLL" + Style.BRIGHT + ":::::::" + Style.NORMAL + "LL             DDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "DDDDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + "::::::" + Style.NORMAL + "O   O" + Style.BRIGHT + "::::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D    D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + "::::::" + Style.NORMAL + "O   O" + Style.BRIGHT + "::::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L         LLLLLL  D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D    D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " O" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OOO" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OLL" + Style.BRIGHT + ":::::::" + Style.NORMAL + "LLLLLLLLL" + Style.BRIGHT + ":::::" + Style.NORMAL + "LDDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "DDDDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
-	print(Fore.YELLOW + " OO" + Style.BRIGHT + ":::::::::::::" + Style.NORMAL +"OO L" + Style.BRIGHT + "::::::::::::::::::::::" + Style.NORMAL + "LD" + Style.BRIGHT + ":::::::::::::::" + Style.NORMAL + "DD" + Style.RESET_ALL)
-	print(Fore.YELLOW + "   OO" + Style.BRIGHT + ":::::::::" + Style.NORMAL +"OO   L" + Style.BRIGHT + "::::::::::::::::::::::" + Style.NORMAL + "LD" + Style.BRIGHT + "::::::::::::" + Style.NORMAL + "DDD" + Style.RESET_ALL)
+	print(Fore.YELLOW + "\n       OOOOOOOOO     LLLLLLLLLLL             DDDDDDDDDDDDD")
+	print(Fore.YELLOW + "     OO" + Style.BRIGHT + ":::::::::" + Style.NORMAL + "OO   L" + Style.BRIGHT + ":::::::::" + Style.NORMAL + "L             D" + Style.BRIGHT + "::::::::::::" + Style.NORMAL + "DDD" + Style.RESET_ALL)
+	print(Fore.YELLOW + "   OO" + Style.BRIGHT + ":::::::::::::" + Style.NORMAL + "OO L" + Style.BRIGHT + ":::::::::" + Style.NORMAL + "L             D" + Style.BRIGHT + ":::::::::::::::" + Style.NORMAL + "DD" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OOO" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OLL" + Style.BRIGHT + ":::::::" + Style.NORMAL + "LL             DDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "DDDDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + "::::::" + Style.NORMAL + "O   O" + Style.BRIGHT + "::::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D    D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::" + Style.NORMAL + "O     O" + Style.BRIGHT + ":::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L                 D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D     D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + "::::::" + Style.NORMAL + "O   O" + Style.BRIGHT + "::::::" + Style.NORMAL +"O  L" + Style.BRIGHT + ":::::" + Style.NORMAL + "L         LLLLLL  D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D    D" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  O" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OOO" + Style.BRIGHT + ":::::::" + Style.NORMAL + "OLL" + Style.BRIGHT + ":::::::" + Style.NORMAL + "LLLLLLLLL" + Style.BRIGHT + ":::::" + Style.NORMAL + "LDDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "DDDDD" + Style.BRIGHT + ":::::" + Style.NORMAL + "D" + Style.RESET_ALL)
+	print(Fore.YELLOW + "  OO" + Style.BRIGHT + ":::::::::::::" + Style.NORMAL +"OO L" + Style.BRIGHT + "::::::::::::::::::::::" + Style.NORMAL + "LD" + Style.BRIGHT + ":::::::::::::::" + Style.NORMAL + "DD" + Style.RESET_ALL)
+	print(Fore.YELLOW + "    OO" + Style.BRIGHT + ":::::::::" + Style.NORMAL +"OO   L" + Style.BRIGHT + "::::::::::::::::::::::" + Style.NORMAL + "LD" + Style.BRIGHT + "::::::::::::" + Style.NORMAL + "DDD" + Style.RESET_ALL)
 	print(Fore.YELLOW + "     OOOOOOOOO     LLLLLLLLLLLLLLLLLLLLLLLLDDDDDDDDDDDDD\n")
 	print(Fore.YELLOW + "$~~~~~~~~~~~~~~~~~~~~~~$ Onion Link Database $~~~~~~~~~~~~~~~~~~~~~~$\n")
 	print(Fore.YELLOW + "                             Version 0.1")
 	print(Fore.YELLOW + "   By Michael Constantine Dimopoulos - MCD - anivsante2@gmail.com")
-	print(Fore.YELLOW + "               Report bugs & pages that don't work.\n")
+	print(Fore.YELLOW + "                   Report bugs & expired links.\n")
 	print(Fore.YELLOW + "$~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$")
+#######################################
 
-
+#This Function Prints the options;
 def options():
 	sub = "         --submit      Submit your own link!"
 	print(Fore.RED + sub + Style.RESET_ALL)
 	print("         --help        Display the help panel (Shown right now)")
-	print("         --legals      License and legal disclaimer")
+	print("         --legals      license and legal disclaimer")
 	print("         --service     Site that helps the TOR community") 
 	print("         --repository  List of TOR links & websites")
 	print("         --store       Store & market (mostly illegal)")
@@ -113,10 +127,12 @@ def options():
 	print("         --audio       Music tracks, streamings & radio")
 	print("         --video       Clips & videos\n")
 	print("Usage: python old.py [TAG]")
+#Interface without arguments
 def Interface():
 	software()
 	random.choice([banner0, banner1, banner2, banner3])()
 	options()
+#Interface with arguments
 def InterfaceS():
 	software()
 	random.choice([banner0, banner1, banner2, banner3])()
@@ -148,6 +164,7 @@ parser.add_argument("--video", help="Clips & videos", action="store_true")
 args = parser.parse_args()
 
 if args.service or args.repository or args.store or args.weapons or args.adult or args.drugs or args.torrents or args.world or args.political or args.commercial or args.hosting or args.mail or args.forums or args.chat or args.blogs or args.books or args.hack or args.image or args.audio or args.video:
+	# Search with a tag:
 	InterfaceS()
 	if args.service:
 		search("service")
@@ -189,10 +206,19 @@ if args.service or args.repository or args.store or args.weapons or args.adult o
 		search("audio")
 	elif args.video:
 		search("video")
-
+# Legals Option
 elif args.legals:
 	InterfaceS()
-	print("SECTION NOT DONE YET FOLKS")
+	print(Style.RESET_ALL + "\n\nLisence:\n")
+	print("OLD (Onion Links Databse) is free software and can be modified/re-distributed")
+	print("under the terms of the GNU GPL 3.0 (GNU General Public License 0.3) as published")
+	print("by the Free Software Foundation;\n")
+	print(Fore.RED + Style.BRIGHT + "\n\n[!] Legal Disclaimer[!]\n")
+	print(Fore.RED + Style.BRIGHT + "Some TOR services could be used for malicious purposes. We do not want")
+	print(Fore.RED + Style.BRIGHT + "to encourage such behaviour by promoting these websites. OLD is just a")
+	print(Fore.RED + Style.BRIGHT + "repository / terminal search engine. The developer has no responsibility")
+	print(Fore.RED + Style.BRIGHT + "for any unauthorized use of the websites listed in our database.\n\n" + Style.RESET_ALL)
+# Submit Option
 elif args.submit:
 	banner1()
 	print("To submit a link you need to send an E-Mail to: anivsante2@gmail.com.")
